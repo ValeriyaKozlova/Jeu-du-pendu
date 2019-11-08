@@ -5,6 +5,9 @@
     let motDiv = [];
     let count = 0;
     const buttons = document.querySelectorAll("button");
+    if (window.confirm("Would you like to play?")) {
+        play();
+        };
 
     function play() {
         document.getElementById("row").innerHTML = "";
@@ -14,8 +17,6 @@
         mot = string.split("",);
         monDiv = [];
         count = 0;
-        let ind;
-        let y;
         console.log(string);
 
         document.getElementById("count").innerHTML = " " + count;
@@ -25,8 +26,9 @@
             td.setAttribute("id", i);
             document.getElementById("row").appendChild(td);
         };
+    };
 
-        [...buttons].map(button => {
+    [...buttons].map(button => {
             button.addEventListener("click", e =>{
                 e.preventDefault();
                 e.target.setAttribute('disabled', 'disabled');
@@ -48,7 +50,8 @@
                 console.log(motDiv);
             });
         });
-        function control(){
+
+    function control(){
         let word1 = JSON.stringify(mot);
         let word2 = JSON.stringify(motDiv);
             if (word1 == word2) {
@@ -56,12 +59,9 @@
                 if (window.confirm("Would you like to play again?")) {
                     [...buttons].map(button => {
                         button.removeAttribute("disabled");
+                        motDiv = [];
                     });
                    setTimeout(play, 100);
                 }
             }
         };
-    };
-
-    play();
-});
